@@ -26,7 +26,7 @@ for (const key in eventListeners) {
 }
 
 process.on("uncaughtException", function (err) {
-  fs.writeFile("/Users/joe/test.txt", "Caught exception: " + err, (err) => {
+  fs.writeFile("../log.txt", "Caught exception: " + err, (err) => {
     if (err) {
       console.error(err);
       return;

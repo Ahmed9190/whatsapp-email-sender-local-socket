@@ -1,0 +1,30 @@
+{
+  "name": "whatsapp-email-sender-local",
+  "version": "1.0.0",
+  "description": "<a name=\"readme-top\"></a>\r <br />",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "rm -rf dist/ && bash -c tsc --project tsconfig.build.json .",
+    "test": "jest",
+    "start:dev": "nodemon ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cryptr": "^6.0.3",
+    "dotenv": "^16.0.3",
+    "nodemailer": "^6.8.0",
+    "puppeteer": "^12.0.0",
+    "socket.io-client": "^4.5.3"
+  },
+  "devDependencies": {
+    "@types/cryptr": "^4.0.1",
+    "@types/nodemailer": "^6.4.6",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

@@ -54,7 +54,6 @@ export class EmailFacade {
     TmpStorage.saveUseRemove({
       base64Files: base64Files,
       use: (paths: string[]) => {
-        console.log(paths.map((path) => ({ path })));
         return mailer.send({
           to,
           subject,

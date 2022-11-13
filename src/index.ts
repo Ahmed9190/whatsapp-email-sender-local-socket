@@ -22,7 +22,7 @@ for (const key in eventListeners) {
   if (Object.prototype.hasOwnProperty.call(eventListeners, key)) {
     const { name: eventName, callback } =
       eventListeners[key as keyof typeof eventListeners];
-    console.log(eventName);
+
     socket.on(eventName, callback);
   }
 }

@@ -10,6 +10,9 @@ export const TransporterOptions = {
         user: email,
         pass: password,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
     };
   },
 
@@ -39,6 +42,9 @@ export const TransporterOptions = {
       auth: {
         user: email,
         pass: password,
+      },
+      tls: {
+        rejectUnauthorized: false,
       },
     };
   },

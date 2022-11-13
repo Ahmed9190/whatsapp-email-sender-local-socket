@@ -10,16 +10,33 @@ export class TmpStorage {
   );
 
   static async saveUseRemove({
-    base64File,
+    base64Files,
     use,
   }: {
-    base64File: Base64File;
-    use: (path: string) => Promise<void>;
+    base64Files: Base64File[];
+    use: (paths: string[]) => Promise<void>;
   }) {
-    const savedFilePath = await this.fileSystemHandler.saveBase64ToFile(
-      base64File
-    );
-    await use(savedFilePath);
-    await this.fileSystemHandler.removeFile(savedFilePath);
+    const savedFilePaths = await this.saveBase64Files(base64Files);
+
+    await use(savedFilePaths);
+
+    base64Files.forEach(async (base64File) => {
+      await this.fileSystemHandler.removeFile(base64File.fileName);
+    });
+  }
+
+  static async saveBase64Files(base64Files: Base64File[]) {
+    const savedFilePaths: string[] = [];
+
+    for (let i = 0; i < base64Files.length; i++) {
+      const base64File = base64Files[i];
+
+      const savedFilePath = await this.fileSystemHandler.saveBase64ToFile(
+        base64File
+      );
+      savedFilePaths.push(savedFilePath);
+    }
+
+    return savedFilePaths;
   }
 }

@@ -1,10 +1,7 @@
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 
-export class TransporterOptions {
-  public static google = function (
-    email: string,
-    password: string
-  ): SMTPTransport.Options {
+export const TransporterOptions = {
+  google: function (email: string, password: string): SMTPTransport.Options {
     return {
       service: "gmail",
       host: "smtp.gmail.com",
@@ -14,12 +11,9 @@ export class TransporterOptions {
         pass: password,
       },
     };
-  };
+  },
 
-  public static microsoft = function (
-    email: string,
-    password: string
-  ): SMTPTransport.Options {
+  microsoft: function (email: string, password: string): SMTPTransport.Options {
     return {
       host: "outlook.office365.com",
       port: 587,
@@ -35,7 +29,19 @@ export class TransporterOptions {
         rejectUnauthorized: false,
       },
     };
-  };
-}
+  },
 
-export type EmailService = "google" | "microsoft";
+  zoho: function (email: string, password: string): SMTPTransport.Options {
+    return {
+      host: "smtp.zoho.com",
+      secure: true,
+      port: 465,
+      auth: {
+        user: email,
+        pass: password,
+      },
+    };
+  },
+};
+
+export type EmailService = keyof typeof TransporterOptions;

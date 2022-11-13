@@ -1,14 +1,14 @@
-import puppeteer from "puppeteer";
+import { FileChooser, Page } from "puppeteer";
 import Browser from "../../core/browser/browser";
 import { delay } from "../../core/utils/time.utils";
 
-export default class WhatsappHandler {
+export default class WhatsappPageHandler {
   async click({
     page,
     selector,
     delayDuration = 1000,
   }: {
-    page: puppeteer.Page;
+    page: Page;
     selector: string;
     delayDuration?: number;
   }): Promise<void> {
@@ -22,9 +22,9 @@ export default class WhatsappHandler {
     page,
     inputFileSelector,
   }: {
-    page: puppeteer.Page;
+    page: Page;
     inputFileSelector: string;
-  }): Promise<puppeteer.FileChooser> {
+  }): Promise<FileChooser> {
     await page.waitForSelector(inputFileSelector);
     const [documentChooser] = await Promise.all([
       page.waitForFileChooser(),
@@ -38,13 +38,13 @@ export default class WhatsappHandler {
     delayDuration = 2000,
   }: {
     delayDuration?: number;
-    page: puppeteer.Page;
+    page: Page;
   }): Promise<void> {
     await page.keyboard.press("Enter");
     await delay(delayDuration);
   }
 
-  async openChat(phoneNumber: string): Promise<puppeteer.Page> {
+  async openChat(phoneNumber: string): Promise<Page> {
     const browser: Browser = new Browser();
     const url: string = this.urlBuilder(phoneNumber);
 

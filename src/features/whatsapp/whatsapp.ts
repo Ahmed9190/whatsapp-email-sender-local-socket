@@ -1,13 +1,18 @@
+import { Page } from "puppeteer";
 import { delay } from "../../core/utils/time.utils";
-import WhatsappHandler from "./whatsapp-handler";
+import WhatsappPageHandler from "./whatsapp-page-handler";
 import Selector from "./whatsapp-selector";
 
 export default class Whatsapp {
-  private whatsappHandler: WhatsappHandler = new WhatsappHandler();
+  private whatsappHandler: WhatsappPageHandler = new WhatsappPageHandler();
 
-  async sendFile(phoneNumber: string, filePath: string): Promise<void> {
-    const page = await this.whatsappHandler.openChat(phoneNumber);
-
+  async sendFile({
+    filePaths,
+    page,
+  }: {
+    filePaths: string[];
+    page: Page;
+  }): Promise<void> {
     this.whatsappHandler.click({
       page,
       selector: Selector.attachButton,
@@ -21,17 +26,19 @@ export default class Whatsapp {
       inputFileSelector: Selector.uploadDocumentButton,
     });
 
-    documentChooser.accept([filePath]);
+    documentChooser.accept(filePaths);
     await delay(2000);
 
     await this.whatsappHandler.send({ page, delayDuration: 10000 });
-
-    await page.close();
   }
 
-  async sendMessage(phoneNumber: string, message: string): Promise<void> {
-    const page = await this.whatsappHandler.openChat(phoneNumber);
-
+  async sendMessage({
+    message,
+    page,
+  }: {
+    message: string;
+    page: Page;
+  }): Promise<void> {
     await this.whatsappHandler.click({
       page,
       selector: Selector.messageInput,
@@ -40,7 +47,18 @@ export default class Whatsapp {
     await page.keyboard.type(message, { delay: 50 });
 
     await this.whatsappHandler.send({ page });
+  }
 
-    await page.close();
+  async sendFileWithMessage({
+    message,
+    filePaths,
+    page,
+  }: {
+    message: string;
+    filePaths: string[];
+    page: Page;
+  }): Promise<void> {
+    await this.sendMessage({ message, page });
+    await this.sendFile({ filePaths, page });
   }
 }

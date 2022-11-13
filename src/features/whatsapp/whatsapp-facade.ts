@@ -1,47 +1,65 @@
 import Browser from "../../core/browser/browser";
-import { Base64File } from "../../core/interfaces/base64-file";
 import { TmpStorage } from "../../core/storage/tmp-storage";
+import { WhatsappSendFileWithMessageDto } from "./dto/whatsapp-send-file-with-message.dto";
 import { WhatsappSendFileDto } from "./dto/whatsapp-send-file.dto";
 import { WhatsappSendMessageDto } from "./dto/whatsapp-send-message.dto";
 import Whatsapp from "./whatsapp";
-import WhatsappHandler from "./whatsapp-handler";
+import WhatsappPageHandler from "./whatsapp-page-handler";
 
 export class WhatsappFacade {
-  async open(): Promise<void> {
+  private static readonly whatsapp: Whatsapp = new Whatsapp();
+  private static readonly whatsappPageHandler: WhatsappPageHandler =
+    new WhatsappPageHandler();
+
+  private constructor() {}
+
+  static async open(): Promise<void> {
     await Browser.open({ withSession: true });
 
-    const whatsappHandler = new WhatsappHandler();
-
-    const page = await whatsappHandler.openWhatsapp();
+    const page = await WhatsappFacade.whatsappPageHandler.openWhatsapp();
 
     await page.waitForNavigation({ timeout: 0 });
   }
 
-  async sendMessage(data: WhatsappSendMessageDto): Promise<void> {
+  static async sendMessage(data: WhatsappSendMessageDto): Promise<void> {
+    const { number, message } = data;
+
     await Browser.open({ withSession: true });
 
-    const { number, message } = data;
-    const whatsapp: Whatsapp = new Whatsapp();
-
-    await whatsapp.sendMessage(number, message);
+    const page = await WhatsappFacade.whatsappPageHandler.openChat(number);
+    await WhatsappFacade.whatsapp.sendMessage({ message: message, page: page });
 
     await Browser.close();
   }
 
-  async sendFile(data: WhatsappSendFileDto): Promise<void> {
+  static async sendFile(data: WhatsappSendFileDto): Promise<void> {
+    const { number, base64Files } = data;
+
     await Browser.open({ withSession: true });
 
-    const { number, base64, fileName } = data;
-    const whatsapp: Whatsapp = new Whatsapp();
-
-    const base64File: Base64File = {
-      base64,
-      fileName,
-    };
-
+    const page = await WhatsappFacade.whatsappPageHandler.openChat(number);
     await TmpStorage.saveUseRemove({
-      base64File,
-      use: (path: string) => whatsapp.sendFile(number, path),
+      base64Files: base64Files,
+      use: (filePaths: string[]) =>
+        WhatsappFacade.whatsapp.sendFile({ filePaths, page }),
+    });
+
+    await Browser.close();
+  }
+
+  static async sendFileWithMessage(
+    data: WhatsappSendFileWithMessageDto
+  ): Promise<void> {
+    const { base64Files, number, message } = data;
+
+    await Browser.open({ withSession: true });
+
+    const page = await WhatsappFacade.whatsappPageHandler.openChat(number);
+    await WhatsappFacade.whatsapp.sendMessage({ message: message, page: page });
+    await TmpStorage.saveUseRemove({
+      base64Files: base64Files,
+      use: (filePaths: string[]) =>
+        WhatsappFacade.whatsapp.sendFile({ filePaths, page }),
     });
 
     await Browser.close();

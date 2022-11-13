@@ -6,10 +6,11 @@ import { EmailUpdateDto } from "./dto/email-update.dto";
 import { Email } from "./email";
 import { EmailService, TransporterOptions } from "./transporter-options";
 import { TmpStorage } from "../../core/storage/tmp-storage";
-import { Base64File } from "../../core/interfaces/base64-file";
 
 export class EmailFacade {
-  update(data: EmailUpdateDto) {
+  private constructor() {}
+
+  static update(data: EmailUpdateDto) {
     const { service, email, password } = data;
 
     const emailServiceLowerCase: EmailService =
@@ -24,8 +25,8 @@ export class EmailFacade {
     EnvFileHandler.setEnvValue(envKeys.PASSWORD, encryptedPassword);
   }
 
-  async send(data: EmailSendDto) {
-    const { to, base64, fileName, text, subject } = data;
+  static async send(data: EmailSendDto) {
+    const { to, base64Files, text, subject } = data;
 
     const service = EnvFileHandler.getEnvValue(
       envKeys.EMAIL_SERVICE
@@ -50,20 +51,17 @@ export class EmailFacade {
 
     const mailer: Email = new Email(transporterOptions);
 
-    const base64File: Base64File = {
-      base64,
-      fileName,
-    };
-
     TmpStorage.saveUseRemove({
-      base64File,
-      use: (path: string) =>
-        mailer.sendAttachment({
+      base64Files: base64Files,
+      use: (paths: string[]) => {
+        console.log(paths.map((path) => ({ path })));
+        return mailer.send({
           to,
           subject,
           text,
-          attachments: [{ path: path }],
-        }),
+          attachments: paths.map((path) => ({ path })),
+        });
+      },
     });
   }
 }

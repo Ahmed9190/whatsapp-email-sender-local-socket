@@ -3,6 +3,8 @@ import { envKeys } from "./core/constants/env.const";
 import { EnvFileHandler } from "./core/handlers/env-file.handler";
 import { EmailListenerEvents } from "./features/email/constants/email-events.const";
 import * as fs from "fs";
+import * as path from "path";
+import { WhatsappListenerEvents } from "./features/whatsapp/constants/whatsapp-events.const";
 
 const url: string = EnvFileHandler.getEnvValue(envKeys.SERVER_URL)!;
 const socket = io(url, { autoConnect: true });
@@ -14,25 +16,22 @@ socket.on("connect", () => {
   console.log("connected");
 });
 
-const eventListeners = { ...EmailListenerEvents };
+const eventListeners = { ...EmailListenerEvents, ...WhatsappListenerEvents };
 
 for (const key in eventListeners) {
   if (Object.prototype.hasOwnProperty.call(eventListeners, key)) {
     const { name: eventName, callback } =
       eventListeners[key as keyof typeof eventListeners];
-
+    console.log(eventName);
     socket.on(eventName, callback);
   }
 }
 
 process.on("uncaughtException", function (err) {
-  fs.writeFile("../log.txt", "Caught exception: " + err, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    //file written successfully
-  });
+  fs.appendFileSync(
+    path.join(__dirname, "../log.txt"),
+    `[${Date().toString()}] : ${err}\n`
+  );
 
   console.log("Caught exception: " + err);
 });

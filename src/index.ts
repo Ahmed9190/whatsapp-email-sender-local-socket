@@ -22,8 +22,23 @@ for (const key in eventListeners) {
   if (Object.prototype.hasOwnProperty.call(eventListeners, key)) {
     const { name: eventName, callback } =
       eventListeners[key as keyof typeof eventListeners];
-
-    socket.on(eventName, callback);
+    socket.on(eventName, (data) => {
+      callback(data)
+        .then(() =>
+          socket.emit("LOCAL_CLIENT:RESPONSE", {
+            uuid: EnvFileHandler.getEnvValue(envKeys.UUID),
+            hasError: false,
+            body: "success",
+          })
+        )
+        .catch((error) => {
+          socket.emit("LOCAL_CLIENT:RESPONSE", {
+            uuid: EnvFileHandler.getEnvValue(envKeys.UUID),
+            hasError: true,
+            body: error,
+          });
+        });
+    });
   }
 }
 

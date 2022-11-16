@@ -10,7 +10,7 @@ import { TmpStorage } from "../../core/storage/tmp-storage";
 export class EmailFacade {
   private constructor() {}
 
-  static update(data: EmailUpdateDto) {
+  static async update(data: EmailUpdateDto) {
     const { service, email, password } = data;
 
     const emailServiceLowerCase: EmailService =
@@ -51,10 +51,10 @@ export class EmailFacade {
 
     const mailer: Email = new Email(transporterOptions);
 
-    TmpStorage.saveUseRemove({
+    await TmpStorage.saveUseRemove({
       base64Files: base64Files,
-      use: (paths: string[]) => {
-        return mailer.send({
+      use: async (paths: string[]) => {
+        return await mailer.send({
           to,
           subject,
           text,

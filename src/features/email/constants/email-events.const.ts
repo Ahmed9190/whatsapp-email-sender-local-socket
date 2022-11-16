@@ -1,4 +1,5 @@
 import { ListenerEvents } from "../../../core/interfaces/listener-events";
+import { EmailSendDto } from "../dto/email-send.dto";
 import { EmailFacade } from "../email-facade";
 
 export const EmailListenerEvents: ListenerEvents = {

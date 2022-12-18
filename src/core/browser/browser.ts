@@ -9,8 +9,7 @@ export default class Browser {
     this.browser = await puppeteer.launch({
       headless: false,
       userDataDir: withSession ? "./cache" : undefined,
-      executablePath:
-        EnvFileHandler.getEnvValue(envKeys.CHROME_PATH) ?? undefined,
+      product: "firefox",
       timeout: 0,
     });
   }

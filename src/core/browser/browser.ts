@@ -9,7 +9,6 @@ export default class Browser {
     this.browser = await puppeteer.launch({
       headless: false,
       userDataDir: withSession ? "./cache" : undefined,
-      product: "firefox",
       timeout: 0,
     });
   }

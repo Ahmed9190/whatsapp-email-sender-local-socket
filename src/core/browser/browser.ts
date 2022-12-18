@@ -1,4 +1,6 @@
 import puppeteer from "puppeteer";
+import { EnvFileHandler } from "../handlers/env-file.handler";
+import { envKeys } from "../constants/env.const";
 
 export default class Browser {
   private static browser: puppeteer.Browser;
@@ -7,7 +9,8 @@ export default class Browser {
     this.browser = await puppeteer.launch({
       headless: false,
       userDataDir: withSession ? "./cache" : undefined,
-
+      executablePath:
+        EnvFileHandler.getEnvValue(envKeys.CHROME_PATH) ?? undefined,
       timeout: 0,
     });
   }

@@ -1,12 +1,16 @@
-import puppeteer from "puppeteer";
+import { launch, Page, Browser as PuppeteerBrowser } from "puppeteer";
 import { EnvFileHandler } from "../handlers/env-file.handler";
 import { envKeys } from "../constants/env.const";
 
-export default class Browser {
-  private static browser: puppeteer.Browser;
+interface IOpenBrowser {
+  withSession: boolean;
+}
 
-  static async open({ withSession }: { withSession: boolean }) {
-    this.browser = await puppeteer.launch({
+export default class Browser {
+  private static browser: PuppeteerBrowser;
+
+  static async open({ withSession }: IOpenBrowser) {
+    this.browser = await launch({
       headless: false,
       userDataDir: withSession ? "./cache" : undefined,
       executablePath:
@@ -15,7 +19,7 @@ export default class Browser {
     });
   }
 
-  async newTab(url: string): Promise<puppeteer.Page> {
+  async newTab(url: string): Promise<Page> {
     const page = await Browser.browser.newPage();
     await page.goto(url, { waitUntil: "load" });
     return page;

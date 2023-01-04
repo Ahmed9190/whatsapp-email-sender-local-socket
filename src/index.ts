@@ -24,14 +24,15 @@ for (const key in eventListeners) {
       eventListeners[key as keyof typeof eventListeners];
     socket.on(eventName, (data) => {
       callback(data)
-        .then(() =>
+        .then(() => {
           socket.emit("LOCAL_CLIENT:RESPONSE", {
             uuid: EnvFileHandler.getEnvValue(envKeys.UUID),
             hasError: false,
             body: "success",
-          })
-        )
+          });
+        })
         .catch((error) => {
+          appendErrorInLogFile(error);
           socket.emit("LOCAL_CLIENT:RESPONSE", {
             uuid: EnvFileHandler.getEnvValue(envKeys.UUID),
             hasError: true,
@@ -42,11 +43,13 @@ for (const key in eventListeners) {
   }
 }
 
-process.on("uncaughtException", function (err) {
+process.on("uncaughtException", appendErrorInLogFile);
+
+function appendErrorInLogFile(err: any) {
   fs.appendFileSync(
     path.join(__dirname, "../log.txt"),
-    `[${Date().toString()}] : ${err}\n`
+    `[${new Date().toLocaleString()}] : ${err}\n`
   );
 
-  console.log("Caught exception: " + err);
-});
+  console.log(err);
+}

@@ -15,7 +15,7 @@
     "cryptr": "^6.0.3",
     "dotenv": "^16.0.3",
     "nodemailer": "^6.8.0",
-    "puppeteer": "^19.4.1",
+    "puppeteer": "^16.2.0",
     "socket.io-client": "^4.5.4"
   },
   "devDependencies": {

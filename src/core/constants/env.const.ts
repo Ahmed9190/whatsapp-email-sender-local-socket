@@ -9,5 +9,5 @@ export const envKeys = Object.freeze({
   ENCRYPTION_KEY: "ENCRYPTION_KEY",
   UUID: "UUID",
   SERVER_URL: "SERVER_URL",
-  CHROME_PATH: "CHROME_PATH",
+  BROWSER_PATH: "BROWSER_PATH",
 });

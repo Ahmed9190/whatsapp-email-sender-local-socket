@@ -14,7 +14,7 @@ export default class Browser {
       headless: false,
       userDataDir: withSession ? "./cache" : undefined,
       executablePath:
-        EnvFileHandler.getEnvValue(envKeys.CHROME_PATH) ?? undefined,
+        EnvFileHandler.getEnvValue(envKeys.BROWSER_PATH) ?? undefined,
       timeout: 0,
     });
   }

@@ -4,3 +4,4 @@ dist
 cache
 .node-persist
 install.txt
+log.txt

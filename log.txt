@@ -29,3 +29,8 @@ TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troublesh
 [1/19/2023, 1:55:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
 [1/19/2023, 1:55:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
 [1/19/2023, 1:55:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded
+[1/19/2023, 2:07:23 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 2:16:47 PM] : TimeoutError: waiting for selector `div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 2:16:47 PM] : TimeoutError: waiting for selector `div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 2:16:47 PM] : TimeoutError: waiting for selector `div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded
+[1/19/2023, 2:18:43 PM] : TimeoutError: waiting for selector `div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded

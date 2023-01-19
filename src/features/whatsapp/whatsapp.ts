@@ -44,7 +44,7 @@ export default class Whatsapp {
       selector: Selector.messageInput,
     });
 
-    await page.keyboard.type(message, { delay: 50 });
+    await page.keyboard.type(message, { delay: 100 });
 
     await this.whatsappHandler.send({ page });
   }

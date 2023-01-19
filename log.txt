@@ -1,1 +1,31 @@
 [1/4/2023, 10:52:42 AM] : Error: Navigation failed because browser has disconnected!
+[1/19/2023, 1:36:56 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._2lMWa > div.p3_M1 > div > div.fd365im1.to2l77zo.bbv8nyr4.mwp4sxku.gfz4du6o.ag5g9lrv > p` failed: timeout 30000ms exceeded
+[1/19/2023, 1:38:41 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 1:44:52 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._2lMWa > div.p3_M1 > div > div.fd365im1.to2l77zo.bbv8nyr4.mwp4sxku.gfz4du6o.ag5g9lrv > p` failed: timeout 30000ms exceeded
+[1/19/2023, 1:47:31 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:47:31 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:47:31 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded
+[1/19/2023, 1:48:07 PM] : Error: Failed to launch the browser process!
+
+
+TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md
+
+[1/19/2023, 1:48:18 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 1:48:31 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 1:48:31 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 1:48:31 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 1:49:42 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:49:42 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:49:42 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded
+[1/19/2023, 1:50:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:50:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:50:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded
+[1/19/2023, 1:52:32 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:52:32 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:52:32 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded
+[1/19/2023, 1:54:51 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 1:54:52 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 1:54:52 PM] : ProtocolError: Protocol error (Runtime.callFunctionOn): Target closed.
+[1/19/2023, 1:55:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:55:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > div` failed: timeout 30000ms exceeded
+[1/19/2023, 1:55:50 PM] : TimeoutError: waiting for selector `#main > footer > div._2BU3P.tm2tP.copyable-area > div > span:nth-child(2) > div > div._3HQNh._1un-p > div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded

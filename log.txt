@@ -34,3 +34,10 @@ TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troublesh
 [1/19/2023, 2:16:47 PM] : TimeoutError: waiting for selector `div._2jitM > div > div` failed: timeout 30000ms exceeded
 [1/19/2023, 2:16:47 PM] : TimeoutError: waiting for selector `div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded
 [1/19/2023, 2:18:43 PM] : TimeoutError: waiting for selector `div._2jitM > div > span > div > div > ul > li:nth-child(4) > button > span` failed: timeout 30000ms exceeded
+[2/25/2023, 10:33:33 AM] : TimeoutError: waiting for selector `div.fd365im1.to2l77zo.bbv8nyr4.mwp4sxku.gfz4du6o.ag5g9lrv > p` failed: timeout 30000ms exceeded
+[2/25/2023, 10:33:48 AM] : Error: Failed to launch the browser process!
+
+
+TROUBLESHOOTING: https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md
+
+[2/25/2023, 10:34:24 AM] : TimeoutError: waiting for selector `div.fd365im1.to2l77zo.bbv8nyr4.mwp4sxku.gfz4du6o.ag5g9lrv > p` failed: timeout 30000ms exceeded

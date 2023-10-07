@@ -4,17 +4,20 @@ import { EnvFileHandler } from "../../core/handlers/env-file.handler";
 import { EmailSendDto } from "./dto/email-send.dto";
 import { EmailUpdateDto } from "./dto/email-update.dto";
 import { Email } from "./email";
-import { EmailService, TransporterOptions } from "./transporter-options";
+import {
+  EmailService as EmailServiceType,
+  TransporterOptions,
+} from "./transporter-options";
 import { TmpStorage } from "../../core/storage/tmp-storage";
 
-export class EmailFacade {
+export class EmailService {
   private constructor() {}
 
   static async update(data: EmailUpdateDto) {
     const { service, email, password } = data;
 
-    const emailServiceLowerCase: EmailService =
-      service.toLocaleLowerCase() as EmailService;
+    const emailServiceLowerCase: EmailServiceType =
+      service.toLocaleLowerCase() as EmailServiceType;
 
     EnvFileHandler.setEnvValue(envKeys.EMAIL_SERVICE, emailServiceLowerCase);
     EnvFileHandler.setEnvValue(envKeys.EMAIL, email);
@@ -30,7 +33,7 @@ export class EmailFacade {
 
     const service = EnvFileHandler.getEnvValue(
       envKeys.EMAIL_SERVICE
-    ) as EmailService;
+    ) as EmailServiceType;
 
     const email = EnvFileHandler.getEnvValue(envKeys.EMAIL);
     const encryptedPassword = EnvFileHandler.getEnvValue(envKeys.PASSWORD);

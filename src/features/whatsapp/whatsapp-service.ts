@@ -6,7 +6,7 @@ import { WhatsappSendMessageDto } from "./dto/whatsapp-send-message.dto";
 import Whatsapp from "./whatsapp";
 import WhatsappPageHandler from "./whatsapp-page-handler";
 
-export class WhatsappFacade {
+export class WhatsappService {
   private static readonly whatsapp: Whatsapp = new Whatsapp();
   private static readonly whatsappPageHandler: WhatsappPageHandler =
     new WhatsappPageHandler();
@@ -16,7 +16,7 @@ export class WhatsappFacade {
   static async open(): Promise<void> {
     await Browser.open({ withSession: true });
 
-    const page = await WhatsappFacade.whatsappPageHandler.openWhatsapp();
+    const page = await WhatsappService.whatsappPageHandler.openWhatsapp();
 
     await page.waitForNavigation({ timeout: 0 });
   }
@@ -26,8 +26,11 @@ export class WhatsappFacade {
 
     await Browser.open({ withSession: true });
 
-    const page = await WhatsappFacade.whatsappPageHandler.openChat(number);
-    await WhatsappFacade.whatsapp.sendMessage({ message: message, page: page });
+    const page = await WhatsappService.whatsappPageHandler.openChat(number);
+    await WhatsappService.whatsapp.sendMessage({
+      message: message,
+      page: page,
+    });
 
     await Browser.close();
   }
@@ -37,11 +40,11 @@ export class WhatsappFacade {
 
     await Browser.open({ withSession: true });
 
-    const page = await WhatsappFacade.whatsappPageHandler.openChat(number);
+    const page = await WhatsappService.whatsappPageHandler.openChat(number);
     await TmpStorage.saveUseRemove({
       base64Files: base64Files,
       use: (filePaths: string[]) =>
-        WhatsappFacade.whatsapp.sendFile({ filePaths, page }),
+        WhatsappService.whatsapp.sendFile({ filePaths, page }),
     });
 
     await Browser.close();
@@ -54,12 +57,15 @@ export class WhatsappFacade {
 
     await Browser.open({ withSession: true });
 
-    const page = await WhatsappFacade.whatsappPageHandler.openChat(number);
-    await WhatsappFacade.whatsapp.sendMessage({ message: message, page: page });
+    const page = await WhatsappService.whatsappPageHandler.openChat(number);
+    await WhatsappService.whatsapp.sendMessage({
+      message: message,
+      page: page,
+    });
     await TmpStorage.saveUseRemove({
       base64Files: base64Files,
       use: (filePaths: string[]) =>
-        WhatsappFacade.whatsapp.sendFile({ filePaths, page }),
+        WhatsappService.whatsapp.sendFile({ filePaths, page }),
     });
 
     await Browser.close();

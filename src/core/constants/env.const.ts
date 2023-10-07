@@ -7,7 +7,5 @@ export const envKeys = Object.freeze({
   EMAIL: "EMAIL",
   PASSWORD: "PASSWORD",
   ENCRYPTION_KEY: "ENCRYPTION_KEY",
-  UUID: "UUID",
-  SERVER_URL: "SERVER_URL",
   BROWSER_PATH: "BROWSER_PATH",
 });

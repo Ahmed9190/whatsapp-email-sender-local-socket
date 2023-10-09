@@ -13,10 +13,9 @@ export default class Whatsapp {
     filePaths: string[];
     page: Page;
   }): Promise<void> {
-    this.whatsappHandler.click({
+    await this.whatsappHandler.click({
       page,
       selector: Selector.attachButton,
-      delayDuration: 2000,
     });
 
     this.whatsappHandler.click({ page, selector: Selector.attachButton });
